@@ -12,12 +12,13 @@ import random
 import numpy as np
 import re
 from pathlib import Path
+from typing import Union
 
 #workaround for unnecessary flash_attn requirement
 from unittest.mock import patch
 from transformers.dynamic_module_utils import get_imports
 
-def fixed_get_imports(filename: str | os.PathLike) -> list[str]:
+def fixed_get_imports(filename: Union[str, os.PathLike]) -> list[str]:
     try:
         if not str(filename).endswith("modeling_florence2.py"):
             return get_imports(filename)
